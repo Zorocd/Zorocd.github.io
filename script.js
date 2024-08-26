@@ -1,25 +1,25 @@
-const wrapper = document.querySelector(".wrapper");
-const question = document.querySelector(".question");
-const gif = document.querySelector(".gif");
-const yesBtn = document.querySelector(".yes-btn");
-const noBtn = document.querySelector(".no-btn");
+function appendToDisplay(value) {
+    const display = document.getElementById('display');
+    display.value += value;
+}
 
-yesBtn.addEventListener("click" ,() =>{ 
-    question.innerHTML = "Aaaaa, I like you too";
-    gif.src =
-        "gif.webp";
+function calculate() {
+    const display = document.getElementById('display');
+    const expression = display.value;
+    
+    // This will replace the result of any mathematical operation with "I love you"
+    if (expression.match(/[0-9]+[+\-*/][0-9]+/)) {
+        display.value = 'I love you';
+    } else {
+        try {
+            display.value = eval(expression);
+        } catch {
+            display.value = 'Error';
+        }
+    }
+}
 
-
-});
-
-noBtn.addEventListener("mouseover", () => {
-    const noBtnRect =noBtn.getBoundingClientRect();
-    const maxX = window.innerHeight - noBtnRect.width;
-    const maxY = window.innerHeight - noBtnRect.height;
-
-    const randomX = Math.floor(Math.random() * maxX)
-    const randomY = Math.floor(Math.random() * maxY);
-
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-});
+function clearDisplay() {
+    const display = document.getElementById('display');
+    display.value = '';
+}
